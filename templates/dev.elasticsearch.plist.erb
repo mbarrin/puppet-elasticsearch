@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>dev.elasticsearch</string>
+    <string>dev.elasticsearch2</string>
 
     <key>Boxen</key>
     <dict>
@@ -17,8 +17,7 @@
     <key>ProgramArguments</key>
     <array>
       <string><%= @executable %></string>
-      <string>-f</string>
-      <string>-D es.config=<%= "#{@configdir}/elasticsearch.yml" %></string>
+      <string>-Des.default.path.conf=<%= @configdir %></string>
     </array>
 
     <key>RunAtLoad</key>

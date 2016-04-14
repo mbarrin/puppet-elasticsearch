@@ -15,8 +15,7 @@ path:
   logs: <%= @logdir %>/
 
 network:
-  bind_host: <%= @host %>
-  publish_host: <%= @host %>
+  host: <%= @host %>
   tcp:
     blocking: true
 
@@ -29,18 +28,12 @@ http:
   max_content_length: 500mb
 
 gateway:
-  type: local
   recover_after_nodes: 1
   expected_nodes: 1
 
 discovery:
   zen:
     ping:
-      multicast:
-        enabled: false
       unicast:
         hosts:
           - <%= @host %>:<%= @transport_port %>
-
-script:
-  disable_dynamic: true

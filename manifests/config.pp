@@ -1,18 +1,18 @@
 # Internal: Manages the elasticsearch configuration files
 #
 
-class elasticsearch::config(
-  $ensure         = $elasticsearch::params::ensure,
-  $cluster        = $elasticsearch::params::cluster,
-  $user           = $elasticsearch::params::user,
-  $configdir      = $elasticsearch::params::configdir,
-  $datadir        = $elasticsearch::params::datadir,
-  $executable     = $elasticsearch::params::executable,
-  $logdir         = $elasticsearch::params::logdir,
-  $host           = $elasticsearch::params::host,
-  $http_port      = $elasticsearch::params::http_port,
-  $transport_port = $elasticsearch::params::transport_port,
-) inherits elasticsearch::params {
+class elasticsearch2::config(
+  $ensure         = $elasticsearch2::params::ensure,
+  $cluster        = $elasticsearch2::params::cluster,
+  $user           = $elasticsearch2::params::user,
+  $configdir      = $elasticsearch2::params::configdir,
+  $datadir        = $elasticsearch2::params::datadir,
+  $executable     = $elasticsearch2::params::executable,
+  $logdir         = $elasticsearch2::params::logdir,
+  $host           = $elasticsearch2::params::host,
+  $http_port      = $elasticsearch2::params::http_port,
+  $transport_port = $elasticsearch2::params::transport_port,
+) inherits elasticsearch2::params {
 
   $dir_ensure = $ensure ? {
     present => directory,
@@ -33,24 +33,24 @@ class elasticsearch::config(
       ensure => $dir_ensure ;
 
     "${configdir}/elasticsearch.yml":
-      content => template('elasticsearch/elasticsearch.yml.erb') ;
+      content => template('elasticsearch2/elasticsearch.yml.erb') ;
 
-    '/Library/LaunchDaemons/dev.elasticsearch.plist':
-      content => template('elasticsearch/dev.elasticsearch.plist.erb'),
+    '/Library/LaunchDaemons/dev.elasticsearch2.plist':
+      content => template('elasticsearch2/dev.elasticsearch.plist.erb'),
       group   => 'wheel',
       owner   => 'root' ;
   }
 
   if $::operatingsystem == 'Darwin' {
-    boxen::env_script { 'elasticsearch':
+    boxen::env_script { 'elasticsearch2':
       ensure   => $ensure,
-      content  => template('elasticsearch/env.sh.erb'),
+      content  => template('elasticsearch2/env.sh.erb'),
       priority => 'lower',
     }
 
     include boxen::config
 
-    file { "${boxen::config::envdir}/elasticsearch.sh":
+    file { "${boxen::config::envdir}/elasticsearch2.sh":
       ensure => absent,
     }
   }

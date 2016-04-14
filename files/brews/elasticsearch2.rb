@@ -1,10 +1,11 @@
 require "formula"
 
-class Elasticsearch < Formula
+class Elasticsearch2 < Formula
   homepage "http://www.elastic.co"
-  url "https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.7.1.tar.gz"
-  sha1 "ffe2e46ec88f4455323112a556adaaa085669d13"
-  version '1.7.1-boxen1'
+  url "https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.2.2/elasticsearch-2.2.2.tar.gz"
+  sha1 "fda508c7026f3421132e27d2d83f4ad91f178b44"
+  version '2.2.2-boxen1'
+  keg_only "mad hax"
 
   head do
     url "https://github.com/elastic/elasticsearch.git"
@@ -12,7 +13,7 @@ class Elasticsearch < Formula
   end
 
   def cluster_name
-    "elasticsearch_#{ENV['USER']}"
+    "elasticsearch2_#{ENV['USER']}"
   end
 
   def install

@@ -36,8 +36,6 @@ gateway:
 discovery:
   zen:
     ping:
-      multicast:
-        enabled: false
       unicast:
         hosts:
           - <%= @host %>:<%= @transport_port %>

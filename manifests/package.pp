@@ -1,10 +1,10 @@
 # Internal: Manages the elasticsearch package
 #
-class elasticsearch::package(
-  $ensure  = $elasticsearch::params::ensure,
-  $version = $elasticsearch::params::version,
-  $package = $elasticsearch::params::package,
-) inherits elasticsearch::params {
+class elasticsearch2::package(
+  $ensure  = $elasticsearch2::params::ensure,
+  $version = $elasticsearch2::params::version,
+  $package = $elasticsearch2::params::package,
+) inherits elasticsearch2::params {
 
   $package_ensure = $ensure ? {
     present => $version,
@@ -12,7 +12,7 @@ class elasticsearch::package(
   }
 
   if $::operatingsystem == 'Darwin' {
-    homebrew::formula { 'elasticsearch': }
+    homebrew::formula { 'elasticsearch2': }
   }
 
   package { $package:

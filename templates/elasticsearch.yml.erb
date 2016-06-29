@@ -26,6 +26,7 @@ transport:
 http:
   port: <%= @http_port %>
   max_content_length: 500mb
+  compression: true
 
 gateway:
   recover_after_nodes: 1
